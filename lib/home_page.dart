@@ -39,7 +39,9 @@ class _HomePageState extends State<HomePage> {
   bool _isPlaying = false;
 
   void startGame() {
-    _isPlaying = true;
+    setState(() {
+      _isPlaying = true;
+    });
     const oneLapse = Duration(milliseconds: 500);
     _timer = Timer.periodic(oneLapse, (timer) {
       statesList = List.generate(
@@ -135,7 +137,7 @@ class _HomePageState extends State<HomePage> {
           }
           if ((statesList[i][j] == 2 || statesList[i][j] == 3) &&
               firstList[i][j] != null) {
-            firstList[i][j] = 1;
+            firstList[i][j] = true;
           }
           if (statesList[i][j] > 3 && firstList[i][j] != null) {
             firstList[i][j] = null;
