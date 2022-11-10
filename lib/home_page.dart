@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _controller = TextEditingController();
   @override
   void initState() {
     for (var i = 0; i < rows; i++) {
@@ -42,6 +43,8 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _isPlaying = true;
     });
+
+    var count = 0;
     const oneLapse = Duration(milliseconds: 500);
     _timer = Timer.periodic(oneLapse, (timer) {
       statesList = List.generate(
@@ -52,84 +55,95 @@ class _HomePageState extends State<HomePage> {
         ),
       );
 
-      for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-          if (i == 0) {
-            if (j == 0) {
-              firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j + 1] != null ? statesList[i][j] += 1 : null;
-            } else if (j == columns - 1) {
-              firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
-            } else {
-              firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j + 1] != null ? statesList[i][j] += 1 : null;
-            }
-          } else if (i == rows - 1) {
-            if (j == 0) {
-              firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i - 1][j + 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
-            } else if (j == columns - 1) {
-              firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
-            } else {
-              firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i - 1][j + 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
-            }
-          } else if (j == 0) {
+      if (count < int.parse(_controller.text)) {
+        for (int i = 0; i < rows; i++) {
+          for (int j = 0; j < columns; j++) {
             if (i == 0) {
-              firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j + 1] != null ? statesList[i][j] += 1 : null;
+              if (j == 0) {
+                firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j + 1] != null ? statesList[i][j] += 1 : null;
+              } else if (j == columns - 1) {
+                firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
+              } else {
+                firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j + 1] != null ? statesList[i][j] += 1 : null;
+              }
             } else if (i == rows - 1) {
-              firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i - 1][j + 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
+              if (j == 0) {
+                firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i - 1][j + 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
+              } else if (j == columns - 1) {
+                firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
+              } else {
+                firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i - 1][j + 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
+              }
+            } else if (j == 0) {
+              if (i == 0) {
+                firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j + 1] != null ? statesList[i][j] += 1 : null;
+              } else if (i == rows - 1) {
+                firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i - 1][j + 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
+              } else {
+                firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i - 1][j + 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j + 1] != null ? statesList[i][j] += 1 : null;
+              }
+            } else if (j == columns - 1) {
+              if (i == 0) {
+                firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
+              } else if (i == rows - 1) {
+                firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
+              } else {
+                firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
+                firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
+              }
             } else {
               firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
+              firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
               firstList[i - 1][j + 1] != null ? statesList[i][j] += 1 : null;
+              firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
               firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
               firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
+              firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
               firstList[i + 1][j + 1] != null ? statesList[i][j] += 1 : null;
             }
-          } else if (j == columns - 1) {
-            if (i == 0) {
-              firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
-            } else if (i == rows - 1) {
-              firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
-            } else {
-              firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
-              firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
-            }
-          } else {
-            firstList[i - 1][j] != null ? statesList[i][j] += 1 : null;
-            firstList[i - 1][j - 1] != null ? statesList[i][j] += 1 : null;
-            firstList[i - 1][j + 1] != null ? statesList[i][j] += 1 : null;
-            firstList[i][j - 1] != null ? statesList[i][j] += 1 : null;
-            firstList[i][j + 1] != null ? statesList[i][j] += 1 : null;
-            firstList[i + 1][j] != null ? statesList[i][j] += 1 : null;
-            firstList[i + 1][j - 1] != null ? statesList[i][j] += 1 : null;
-            firstList[i + 1][j + 1] != null ? statesList[i][j] += 1 : null;
           }
         }
+        count++;
+      } else {
+        _timer!.cancel();
+        _isPlaying = false;
+        _controller.text = '';
+        setState(() {});
+
+        return;
       }
+
       for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
           if (statesList[i][j] < 2 && firstList[i][j] != null) {
@@ -244,7 +258,46 @@ class _HomePageState extends State<HomePage> {
                 _isPlaying = false;
                 setState(() {});
               } else {
-                startGame();
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text('Enter the number of generations'),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+                          controller: _controller,
+                          keyboardType: TextInputType.number,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              startGame();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 210, 16, 64),
+                            ),
+                            child: const Text(
+                              'Ok',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
               }
             },
             child: _isPlaying
